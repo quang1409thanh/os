@@ -1,0 +1,4 @@
+Đọc file này đầu tiên:
+- trên đây là bài tập về nhà
+- src có thể lấy trong file readme.md 
+- và các file src đã được đẩy lên trừ file này và file readme
