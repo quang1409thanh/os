@@ -1,0 +1,5 @@
+hệ điều hành hầu như không giải quyết deadlock
+mà người dùng tự giải quyết
+thuật toán banker để nhận biết an toàn hay không an toàn
+định nghĩa rò ràng cho an toàn:
+    XÉT TẠI THỜI ĐIỂM T:    N+1 TIẾN TRÌNH P0 -> Pn 

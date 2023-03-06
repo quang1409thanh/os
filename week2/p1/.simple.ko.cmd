@@ -1,0 +1,1 @@
+cmd_/home/thanhyk14/os/week2/p1/simple.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/thanhyk14/os/week2/p1/simple.ko /home/thanhyk14/os/week2/p1/simple.o /home/thanhyk14/os/week2/p1/simple.mod.o;  true

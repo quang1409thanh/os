@@ -1,0 +1,47 @@
+đề  bài: 
+process P0
+while(true) {
+    wait(S0);
+    print '0';
+    signal(S1);
+    signal(S2);
+}
+Process P1 
+    wait(S1)
+    signal(S0);
+Process P2
+    wait(S2);
+    singal(S0);
+giải: 
+//P0 chạy trước
+    wait(S0) -> S0 = 0 Print '0';
+    signal(S1) -> S1 = 1
+    signal(S2) -> S2 = 1
+//P1 chạy
+    wait(S1) -> S1 = 0 
+    signal(S0) -> S0 = 1;
+đến đây S0 và S2 đều = 1
+TH1 P0 chạy trước P2
+    // P0 chạy
+        wait(S0) -> S0 = '0' Print '0'
+        signal(S1) -> S1 = 1;
+        signal(S2) -> S2 = 1;
+
+    // P1 chạy xong rồi -> P2 chạy
+        wait(S2) S2 = 0;
+        signal(S0) -> S0 = 1;
+
+    // P0 chạy 
+        wait(S0) -> S0 = 0 Print '0';
+        signal(S1) -> S1 = 1
+        signal(S2) -> S2 = 1
+    // đến đấy S0 = 0 => dừng chạy in ra 3 lần
+TH2 // P2 chạy trước P0
+        wait(S2) S2 = 0;
+        signal(S0) -> S0 = 1;
+    // P0 chạy;
+        wait(S0) -> S0 = 0 Print '0';
+        signal(S1) -> S1 = 1
+        signal(S2) -> S2 = 1
+    //S0 = 0 => P0 dừng chạy in ra 2 lần.
+từ tuần 1 đến tuần 5: lý thuyết và bài tập
