@@ -1,6 +1,6 @@
-public class process {
+public class Process {
     public resources allocation = new resources();
 
-    public process() {
+    public Process() {
     }
 }

@@ -3,7 +3,8 @@
         "iostream": "cpp",
         "iomanip": "cpp",
         "ostream": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "cstring": "cpp"
     },
     "cSpell.words": [
         "printsche"

@@ -3,14 +3,14 @@ import java.util.List;
 
 public class Input {
     public int cntP;
-    public List<process> prc = new ArrayList<>();
+    public List<Process> prc = new ArrayList<>();
     public resources available = new resources();
 
     public Input() {
 
     }
 
-    public Input(int cntP, List<process> prc, resources available) {
+    public Input(int cntP, List<Process> prc, resources available) {
         this.cntP = cntP;
         this.prc = prc;
         this.available = available;

@@ -78,7 +78,7 @@ public class banker_fun {
         int n;
         System.out.println("Đã nhận vào số n");
         n = sc.nextInt();
-        List<process> p = new ArrayList<>();
+        List<Process> p = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             System.out.println("Đã nhận số phần từ và mảng của Allocation P" + i + ":");
             int cnt_al = sc.nextInt();
@@ -98,7 +98,7 @@ public class banker_fun {
                 }
                 resources max = new resources(arr_m, cnt_m);
                 System.out.println(max.toString());
-                p.add(new process_banker(allocation, max));
+                p.add(new Process_banker(allocation, max));
             } else {
                 System.out.println("Đã nhận số phần từ và mảng của request P" + i + ":");
                 int cnt_m = sc.nextInt();
@@ -108,7 +108,7 @@ public class banker_fun {
                 }
                 resources request = new resources(arr_m, cnt_m);
                 System.out.println(request.toString());
-                p.add(new process_deadlock(allocation, request));
+                p.add(new Process_deadlock(allocation, request));
             }
         }
         int cnt_ava = sc.nextInt();
@@ -122,10 +122,10 @@ public class banker_fun {
 
     public static void banker_deadlock(Input input) {
         boolean[] finish = new boolean[input.cntP];
-        if (input.prc.get(0) instanceof process_banker) {
-            List<process_banker> prc_ = new ArrayList<process_banker>();
-            for (process x : input.prc) {
-                process_banker processBanker = (process_banker) x;
+        if (input.prc.get(0) instanceof Process_banker) {
+            List<Process_banker> prc_ = new ArrayList<Process_banker>();
+            for (Process x : input.prc) {
+                Process_banker processBanker = (Process_banker) x;
                 prc_.add(processBanker);
             }
             for (int i = 0; i < input.cntP; i++) {
@@ -150,9 +150,9 @@ public class banker_fun {
 
         } else {
             boolean deadlock = false;
-            List<process_deadlock> prc_ = new ArrayList<process_deadlock>();
-            for (process x : input.prc) {
-                process_deadlock processDeadlock = (process_deadlock) x;
+            List<Process_deadlock> prc_ = new ArrayList<Process_deadlock>();
+            for (Process x : input.prc) {
+                Process_deadlock processDeadlock = (Process_deadlock) x;
                 prc_.add(processDeadlock);
             }
             for (int i = 0; i < input.cntP; i++) {
@@ -195,17 +195,17 @@ public class banker_fun {
         // trường hợp request của banker
         // Trường hợp này nếu có thêm 1 yêu cầu thì chứng tỏ allocation được thêm rs_request, need và available giảm đi rs_request
         // trả về trạng thái khi nhận được 1 request
-        if (input.prc.get(0) instanceof process_banker) {
+        if (input.prc.get(0) instanceof Process_banker) {
             input.available = sub(input.available, rs_request);
             input.prc.get(i).allocation = add(rs_request, input.prc.get(i).allocation);
-            process_banker x = (process_banker) input.prc.get(i);
-            ((process_banker) input.prc.get(i)).need = sub(x.max, x.allocation);
+            Process_banker x = (Process_banker) input.prc.get(i);
+            ((Process_banker) input.prc.get(i)).need = sub(x.max, x.allocation);
         }
         // trường hợp request của deadlock
 
         else {
-            process_deadlock x = (process_deadlock) input.prc.get(i);
-            ((process_deadlock) input.prc.get(i)).request = add(x.request, rs_request);
+            Process_deadlock x = (Process_deadlock) input.prc.get(i);
+            ((Process_deadlock) input.prc.get(i)).request = add(x.request, rs_request);
         }
     }
 }

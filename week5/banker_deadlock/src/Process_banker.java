@@ -1,8 +1,8 @@
-public class process_banker extends process {
+public class Process_banker extends Process {
     public resources max = new resources();
     public resources need = new resources();
 
-    public process_banker(resources allocation, resources max) {
+    public Process_banker(resources allocation, resources max) {
         this.allocation = allocation;
         this.max = max;
         this.need = banker_fun.sub(this.max, this.allocation);

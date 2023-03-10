@@ -1,7 +1,7 @@
-public class process_deadlock extends process {
+public class Process_deadlock extends Process {
     public resources request = new resources();
 
-    public process_deadlock(resources allocation, resources request) {
+    public Process_deadlock(resources allocation, resources request) {
         this.allocation = allocation;
         this.request = request;
     }

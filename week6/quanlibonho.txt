@@ -1,0 +1,10 @@
+đa số các chương trình người dùng viết sử  dụng dynamic linking 
+nhược điểm: do các máy khác nhau chạy khác môi trường khác thì báo lỗi
+ưu điểm
+static lijnking: thêm các thư viện vào comple nhược điểm chiếm nhiều bộ nhớ.
+    ram là mảng 1 chiều gồm n các ô nhớ có kích thước bằng nhau không nói gì kích thước là 1 byte
+    các ô được đánh số và đó là địa chỉ của ô nhớ trong ram
+    64 bit hoặc 32 bit là số  bit lưu để lưu trữ 1 ô nhớ đơn vị trong ram.chuyển sang hexa chỉ phục vụ người 
+    do địa chỉ vật lí ra vào liên tục xin cấp phát giải phóng ram nên dùng địa chỉ logic để tối ưu
+    bảo vệ bộ nhớ:
+    Phần cứng phân trang
