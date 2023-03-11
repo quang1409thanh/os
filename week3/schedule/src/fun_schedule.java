@@ -61,6 +61,7 @@ public class fun_schedule {
             p.get(i).setResponse_time(p.get(i).getStartTime() - p.get(i).getArrivalTime());
             p.get(i).setCompletionTime(p.get(i).getStartTime() + p.get(i).getBurstTime());
             p.get(i).setTurnaroundTime(p.get(i).getCompletionTime() - p.get(i).getArrivalTime());
+            System.out.println("P" + p.get(i).getProcessId() + ": " + p.get(i).getStartTime() + " -> " + p.get(i).getCompletionTime());
         }
     }
 
@@ -151,7 +152,7 @@ public class fun_schedule {
                     p.get(i).setStartTime(p.get(index).getCompletionTime());
                     index = i;
                 } else {
-                    System.out.println("idle");
+                    System.out.println("idle: " + p.get(index).getCompletionTime() + "->" + p.get(i).getArrivalTime());
                     p.get(i).setStartTime(p.get(i).getArrivalTime());
                     index = i;
                 }
@@ -160,6 +161,7 @@ public class fun_schedule {
             p.get(i).setResponse_time(p.get(i).getStartTime() - p.get(i).getArrivalTime());
             p.get(i).setCompletionTime(p.get(i).getStartTime() + p.get(i).getBurstTime());
             p.get(i).setTurnaroundTime(p.get(i).getCompletionTime() - p.get(i).getArrivalTime());
+            System.out.println("P" + p.get(i).getProcessId() + ": " + p.get(i).getStartTime() + "->" + p.get(i).getCompletionTime());
         }
     }
 
@@ -222,7 +224,7 @@ public class fun_schedule {
                     p.get(index).setWaitingTime(p.get(index).getTurnaroundTime() - p.get(index).getBurstTime());
                     is_complete[index] = true;
                     complete++;
-
+                    System.out.println("P" + p.get(index).getProcessId() + ": " + p.get(index).getStartTime() + "->" + p.get(index).getCompletionTime());
                 }
             } else {
                 // ở đây chính là lúc tiến trình đang nhàn rỗi, không có tiến trình tại thời điểm xét được lấy ra;
@@ -279,7 +281,7 @@ public class fun_schedule {
                     p.get(i).setStartTime(p.get(index).getCompletionTime());
                     index = i;
                 } else {
-                    System.out.println("idle");
+                    System.out.println("idle: " + p.get(index).getCompletionTime() + "->" + p.get(i).getArrivalTime());
                     p.get(i).setStartTime(p.get(i).getArrivalTime());
                     index = i;
                 }
@@ -288,6 +290,7 @@ public class fun_schedule {
             p.get(i).setResponse_time(p.get(i).getStartTime() - p.get(i).getArrivalTime());
             p.get(i).setCompletionTime(p.get(i).getStartTime() + p.get(i).getBurstTime());
             p.get(i).setTurnaroundTime(p.get(i).getCompletionTime() - p.get(i).getArrivalTime());
+            System.out.println("P" + p.get(i).getProcessId() + ": " + p.get(i).getStartTime() + "->" + p.get(i).getCompletionTime());
         }
     }
 
@@ -360,6 +363,7 @@ public class fun_schedule {
                     p.get(index).setWaitingTime(p.get(index).getTurnaroundTime() - p.get(index).getBurstTime());
                     is_complete[index] = true;
                     complete++;
+                    System.out.println("P" + p.get(index).getProcessId() + ": " + p.get(index).getStartTime() + "->" + p.get(index).getCompletionTime());
 
                 }
             } else {
@@ -371,6 +375,90 @@ public class fun_schedule {
         System.out.println("số lần chuyển trạng thái: " + cnt);
     }
 
+
+    /**
+     * round_robin
+     */
+    public static void round_robin(List<Process> p) {
+        System.out.println("Hãy nhập qq đi: ");
+        Scanner sc = new Scanner(System.in);
+        int qq = sc.nextInt();
+        p.sort(comparator_at);
+        //1. khởi tạo hàng đợi gồm các phần từ theo thứ tự thời gian đến
+        Queue<Process> queue = new ArrayDeque<>();
+        boolean[] is_start = new boolean[p.size()];
+        boolean[] is_add = new boolean[p.size()];
+        int x = p.size();
+        int current_time = p.get(0).getArrivalTime();
+        queue.add(p.get(0));
+        is_add[0] = true;
+        while (!queue.isEmpty()) {
+            // lấy ra khỏi hàng đợi và cập nhật lại
+            Process temp = queue.poll();
+            for (int i = 0; i < x; i++) {
+                // lấy ra tiến trình trong List p và xử lý nó.
+                if (p.get(i).getProcessId() == temp.getProcessId()) {
+                    boolean check = false;
+                    // kiểm tra xem có tiến trình nào được thêm ở hàng đợi không
+                    if (!is_start[i]) {
+                        is_start[i] = true;
+                        p.get(i).setStartTime(current_time);
+                    }
+                    if (p.get(i).getRemaining_time() <= qq) {
+                        // trạng thái đã xong.
+                        // cập nhật thời gian
+                        System.out.println("P" + p.get(i).getProcessId() + ": " + current_time + " -> " + (current_time + p.get(i).getRemaining_time()));
+                        current_time += p.get(i).getRemaining_time();
+                        p.get(i).setCompletionTime(current_time);
+                        p.get(i).setResponse_time(p.get(i).getStartTime() - p.get(i).getArrivalTime());
+                        p.get(i).setTurnaroundTime(p.get(i).getCompletionTime() - p.get(i).getArrivalTime());
+                        p.get(i).setWaitingTime(p.get(i).getTurnaroundTime() - p.get(i).getBurstTime());
+                        for (int j = 0; j < x; j++) {
+                            if (p.get(j).getArrivalTime() <= current_time && !is_add[j]) {
+                                queue.add(p.get(j));
+                                is_add[j] = true;
+                            }
+
+                        }
+                        p.get(i).setRemaining_time(0);
+                        // nếu không có tiến trình nào được thêm thì phải làm sao ? trường hợp này gần giống với trường hợp cuối. có sự khác biệt là nếu ở cuối thì tất cả các tiến trình được thêm rồi
+                        // tăng tiếp current_time đến thời điểm có tiến trình tiếp theo đến
+                        for (int k = 0; k < x; k++) {
+                            if (!is_add[k]) {
+                                check = true;
+                                break;
+                            }
+                        }
+                        if (queue.isEmpty() && check) {
+                            System.out.println("idle: " + current_time + "->" + p.get(i + 1).getArrivalTime());
+                            current_time = p.get(i + 1).getArrivalTime();
+                            for (int j = 0; j < x; j++) {
+                                if (p.get(j).getArrivalTime() <= current_time && !is_add[j]) {
+                                    queue.add(p.get(j));
+                                    is_add[j] = true;
+                                }
+
+                            }
+                        }
+
+                    } else if (p.get(i).getRemaining_time() > qq) {
+                        // tăng thời gian thành thời gian lượng tử, cập nhật hàng đợi, thêm vào cuối hàng đơi,
+                        System.out.println("P" + p.get(i).getProcessId() + ": " + current_time + " -> " + (current_time + qq));
+                        current_time += qq;
+                        for (int j = 0; j < x; j++) {
+                            if (p.get(j).getArrivalTime() <= current_time & !is_add[j]) {
+                                queue.add(p.get(j));
+                                is_add[j] = true;
+                            }
+                        }
+                        p.get(i).setRemaining_time(p.get(i).getRemaining_time() - qq);
+                        queue.add(p.get(i));
+                    }
+                }
+            }
+        }
+
+    }
 
     /**
      * trả về các thông số trung bình

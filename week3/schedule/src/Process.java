@@ -104,7 +104,7 @@ public class Process {
 
     @Override
     public String toString() {
-        return String.format("Process ID: %d | Arrival Time: %d | Burst Time: %d | Priority: %d | Start Time: %d | Completion Time: %d | Turnaround Time: %d | Waiting Time: %d | Response Time: %d " ,
-                processId, arrivalTime, burstTime, priority, startTime, completionTime, turnaroundTime, waitingTime, response_time);
+        return String.format("Process ID: %d | Arrival Time: %d | Burst Time: %d | Priority: %d | Start Time: %d | Completion Time: %d | Turnaround Time: %d | Waiting Time: %d | Response Time: %d | x: %d " ,
+                processId, arrivalTime, burstTime, priority, startTime, completionTime, turnaroundTime, waitingTime, response_time, remaining_time);
     }
 }

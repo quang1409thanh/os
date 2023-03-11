@@ -1,0 +1,22 @@
+1. Khởi tạo danh sách tiến trình, trong đó mỗi tiến trình gồm có: 
+   - Process ID (ID của tiến trình)
+   - Arrival Time (thời gian đến của tiến trình)
+   - Burst Time (thời gian bùng nổ của tiến trình)
+   - Remaining Time (thời gian còn lại của tiến trình để thực hiện)
+   - Turnaround Time (thời gian hoàn thành của tiến trình)
+   - Waiting Time (thời gian chờ đợi của tiến trình)
+
+2. Khởi tạo hàng đợi (queue) cho các tiến trình đến và đặt thời gian hiện tại (current_time) bằng 0.
+
+3. Trong khi hàng đợi không rỗng:
+   a. Lấy tiến trình đầu tiên trong hàng đợi.
+   b. Nếu thời gian đến của tiến trình này lớn hơn thời gian hiện tại, tăng thời gian hiện tại lên đến thời gian đến của tiến trình.
+   c. Nếu thời gian bùng nổ của tiến trình còn lại nhỏ hơn hoặc bằng đoạn thời gian của round-robin (RR_time_slice), thực hiện tiến trình trong thời gian đó và cập nhật thông tin cho tiến trình.
+      - Thời gian hoàn thành của tiến trình = thời gian hiện tại.
+      - Thời gian chờ đợi của tiến trình = thời gian hoàn thành của tiến trình - thời gian đến của tiến trình - thời gian bùng nổ của tiến trình ban đầu.
+      - Xóa tiến trình khỏi danh sách.
+   d. Ngược lại, thực hiện tiến trình trong đoạn thời gian của round-robin và giảm thời gian còn lại của tiến trình.
+   e. Thêm lại tiến trình vào cuối hàng đợi.
+   f. Tăng thời gian hiện tại lên đoạn thời gian của round-robin.
+
+4. Tính toán thống kê (như thời gian chờ đợi trung bình và thời gian hoàn thành trung bình) dựa trên thông tin của các tiến trình.
