@@ -8,3 +8,4 @@ static lijnking: thêm các thư viện vào comple nhược điểm chiếm nhi
     do địa chỉ vật lí ra vào liên tục xin cấp phát giải phóng ram nên dùng địa chỉ logic để tối ưu
     bảo vệ bộ nhớ:
     Phần cứng phân trang
+    

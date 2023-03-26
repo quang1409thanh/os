@@ -63,9 +63,9 @@ public class banker_fun {
         while (!console_in.equals("D") && !console_in.equals("B"));
 
         if (console_in.equals("D")) {
-            s = "src/data_deadlock.txt";
+            s = "/home/thanhyk14/os/week5/banker_deadlock/src/data_deadlock.txt";
         } else {
-            s = "src/data_banker.txt";
+            s = "/home/thanhyk14/os/week5/banker_deadlock/src/data_banker.txt";
         }
 
         File myfile = new File(s);

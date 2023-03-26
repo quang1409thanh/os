@@ -1,0 +1,1 @@
+thanhyk14@thanhyk14-ThinkBook-14-G3-ACL:~/os/kiemtra$ g++ orphan_process.cpp -o orphan

@@ -1,0 +1,11 @@
+thanhyk14@thanhyk14-ThinkBook-14-G3-ACL:~/os/kiemtra$ g++ orphan_process.cpp -o orphan
+thanhyk14@thanhyk14-ThinkBook-14-G3-ACL:~/os/kiemtra$ ./orphan
+Parent process is running
+Child process is running
+Child process is now orphan
+thanhyk14@thanhyk14-ThinkBook-14-G3-ACL:~/os/kiemtra$ ps -l
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 R  1000  4066  4048  0  80   0 -  4228 -      pts/0    00:00:00 orphan
+1 S  1000  4048  4047  0  80   0 -  4855 wait   pts/0    00:00:00 bash
+1 R  1000  4088  4048  0  80   0 -  4228 -      pts/0    00:00:00 orphan <defunct>
+0 R  1000  4104  4048  0  80   0 -  2286 -      pts/0    00:00:00 ps

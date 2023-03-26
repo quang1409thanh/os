@@ -1,0 +1,14 @@
+first fist best fist tìm hiểu thêm
+cách 2 tìm ra frame trống
+list có hé
+/// 1 lần vào cache 2 lần vào ram,
+[ERROR] Error: ChatGPT error 401: {
+"error": {
+    "message": "This key is associated with a deactivated account. If you feel this is an error, contact us through our help center at help.openai.com.",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": "account_deactivated"
+}
+}
+B tree
+B+ tree
