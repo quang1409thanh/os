@@ -4,15 +4,19 @@ import java.util.List;
 public class Output {
     private List<Integer> reference_string = new ArrayList<>();
     private List<Character> faults = new ArrayList<>();
-    private List<Character> removed = new ArrayList<>();
+    private List<String> removed = new ArrayList<>();
+    List<List<Integer>> total_Frames = new ArrayList<List<Integer>>();
+
 
     private int page_Faults;
     private int page_Replacements;
 
+    private String type;
+
     public Output() {
     }
 
-    public Output(List<Integer> reference_string, List<Character> faults, List<Character> removed, int page_Faults, int page_Replacements) {
+    public Output(List<Integer> reference_string, List<Character> faults, List<String> removed, int page_Faults, int page_Replacements) {
         this.reference_string = reference_string;
         this.faults = faults;
         this.removed = removed;
@@ -36,11 +40,11 @@ public class Output {
         this.faults = faults;
     }
 
-    public List<Character> getRemoved() {
+    public List<String> getRemoved() {
         return removed;
     }
 
-    public void setRemoved(List<Character> removed) {
+    public void setRemoved(List<String> removed) {
         this.removed = removed;
     }
 
@@ -60,6 +64,22 @@ public class Output {
         this.page_Replacements = page_Replacements;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<List<Integer>> getTotal_Frames() {
+        return total_Frames;
+    }
+
+    public void setTotal_Frames(List<List<Integer>> total_Frames) {
+        this.total_Frames = total_Frames;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-12s", "Reference:"));
@@ -76,7 +96,7 @@ public class Output {
         sb.append("\n");
 
         sb.append(String.format("%-12s", "Removed:"));
-        for (char i : removed) {
+        for (String i : removed) {
             sb.append(String.format("%-4s", String.valueOf(i)));
         }
         sb.append("\n");
