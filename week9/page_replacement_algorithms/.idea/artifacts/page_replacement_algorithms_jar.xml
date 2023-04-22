@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="page_replacement_algorithms:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/page_replacement_algorithms_jar</output-path>
+    <root id="archive" name="page_replacement_algorithms_jar.jar">
+      <element id="module-output" name="page_replacement_algorithms" />
+    </root>
+  </artifact>
+</component>
